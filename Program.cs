@@ -10,9 +10,9 @@ namespace Zad2
     {
         public static void Start()
         {
-            Console.WriteLine("#-------=================================-------#");
-            Console.WriteLine("|               Witaj w programie               |");
-            Console.WriteLine("#-------=================================-------#");
+            Console.WriteLine("\n #-------=================================-------#");
+            Console.WriteLine(" |               Witaj w programie               |");
+            Console.WriteLine(" #-------=================================-------#");
             Thread.Sleep(1000);
             Console.Clear();
         }
@@ -22,11 +22,11 @@ namespace Zad2
             Console.WriteLine("\n #-------=================================-------#");
             Console.WriteLine(" |                   M E N U                     |");
             Console.WriteLine(" #-------=================================-------#");
-            Console.WriteLine(" |    1) Podaj walute    (PLN, EURO, JPY ...)    |");
+            Console.WriteLine(" |    1) Podaj walute    (PLN, EUR, JPY, ...)    |");
             Console.WriteLine(" |       (Domyslnie PLN)                         |");
             Console.WriteLine(" |-----------------------------------------------|");
             Console.WriteLine(" |    2) Podaj date              (rrrr-mm-dd)    |");
-            Console.WriteLine(" |      (Domyslnie dzisiaj)                      |");
+            Console.WriteLine(" |       (Domyslnie dzisiaj)                     |");
             Console.WriteLine(" |-----------------------------------------------|");
             Console.WriteLine(" |    3) X Pokaz dane X                          |");
             Console.WriteLine(" |       (w przyszlosci do wyswietlania danych)  |");
@@ -97,7 +97,7 @@ namespace Zad2
                                 else
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("!! Podaj poprawna date (rrrr-mm-dd) !!");
+                                    Console.WriteLine("!! Tego dnia jeszcze nie by³o ;) !!\n!! Podaj poprawna date (rrrr-mm-dd) !!");
                                     Console.ForegroundColor = ConsoleColor.White;
                                 }
                             }
