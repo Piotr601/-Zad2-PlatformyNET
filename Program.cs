@@ -2,15 +2,35 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace Zad2
 {
     class Program
     {
+        public void Start()
+        {
+            Console.WriteLine("============================");
+            Console.WriteLine("|     Witaj w programie    |");
+            Console.WriteLine("============================");
+            Thread.Sleep(1000);
+        }
+
+        public void Menu()
+        {
+            Console.WriteLine("============================");
+            Console.WriteLine("|     Witaj w programie    |");
+            Console.WriteLine("============================");
+
+
+        }
+
         static void Main()
         {
+            DateTime Today = Today.ToString("yyyy-MM-dd");
+
             string data = "";
-            string waluta;
+            string waluta = "PLN";
 
 
             Console.WriteLine("Podaj walute: ");
