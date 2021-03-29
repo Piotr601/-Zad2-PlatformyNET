@@ -10,34 +10,39 @@ namespace Zad2
     {
         public static void Start()
         {
-            Console.WriteLine("===================================");
-            Console.WriteLine("|     Witaj w programie           |");
-            Console.WriteLine("===================================");
+            Console.WriteLine("#-------=================================-------#");
+            Console.WriteLine("|               Witaj w programie               |");
+            Console.WriteLine("#-------=================================-------#");
             Thread.Sleep(1000);
             Console.Clear();
         }
 
         public static void Menu()
         {
-
-            Console.WriteLine("===================================");
-            Console.WriteLine("|    1) Podaj walute              |");
-            Console.WriteLine("|      (Domyslnie PLN)            |");
-            Console.WriteLine("|    2) Podaj date                |");
-            Console.WriteLine("|      (Domyslnie dzisiaj)        |");
-            Console.WriteLine("|    3) Pokaz dane                |");
-            Console.WriteLine("|                                 |");
-            Console.WriteLine("|    0) Wyjscie z programu        |");
-            Console.WriteLine("===================================");
-
+            Console.WriteLine("\n #-------=================================-------#");
+            Console.WriteLine(" |                   M E N U                     |");
+            Console.WriteLine(" #-------=================================-------#");
+            Console.WriteLine(" |    1) Podaj walute    (PLN, EURO, JPY ...)    |");
+            Console.WriteLine(" |       (Domyslnie PLN)                         |");
+            Console.WriteLine(" |-----------------------------------------------|");
+            Console.WriteLine(" |    2) Podaj date              (rrrr-mm-dd)    |");
+            Console.WriteLine(" |      (Domyslnie dzisiaj)                      |");
+            Console.WriteLine(" |-----------------------------------------------|");
+            Console.WriteLine(" |    3) X Pokaz dane X                          |");
+            Console.WriteLine(" |       (w przyszlosci do wyswietlania danych)  |");
+            Console.WriteLine(" |-----------------------------------------------|");
+            Console.WriteLine(" |    0) # Wyjscie z programu #                  |");
+            Console.WriteLine(" #-------=================================-------#\n");
         }
 
         static void Main()
         {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.Clear();
 
-            //Start();
-
-            //Menu();
+            Start();
+            Menu();
 
             DateTime Today = DateTime.Now;
 
@@ -48,19 +53,28 @@ namespace Zad2
 
             while (wybor != 0)
             {
-                Console.Write(" >> Wybor: ");
-                wybor = int.Parse(Console.ReadLine());
+                Console.Write("\n >> Wybor: ");
+                try 
+                { 
+                    wybor = int.Parse(Console.ReadLine()); 
+                }
+                catch (Exception e)
+                {
+                    // wybierz poprawnie
+                }
 
                 if (wybor == 1)
                 {
                     try
                     {
-                        Console.Write("Podaj walute: ");
+                        Console.Write("  > Podaj walute: ");
                         waluta = Console.ReadLine();
                     }
                     catch (Exception e)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("!! Podaj poprawna walute !!");
+                        Console.ForegroundColor = ConsoleColor.White;
                     }
                 }
 
@@ -70,7 +84,7 @@ namespace Zad2
                     {
                         try
                         {
-                            Console.Write("Podaj date (rrrr-mm-dd): ");
+                            Console.Write("  > Podaj date (rrrr-mm-dd): ");
                             data = Console.ReadLine();
 
                             DateTime tempdate;
@@ -81,16 +95,24 @@ namespace Zad2
                                     break;
                                 }
                                 else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("!! Podaj poprawna date (rrrr-mm-dd) !!");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                }
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("!! Podaj poprawna date (rrrr-mm-dd) !!");
+                                Console.ForegroundColor = ConsoleColor.White;
                             }
                         }
                         catch (Exception e)
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("!! Podaj poprawna date !!");
+                            Console.ForegroundColor = ConsoleColor.White;
                         }
                     }
 
@@ -102,9 +124,15 @@ namespace Zad2
                     Thread.Sleep(1500);
                 }
 
-            }
+                if( wybor != 1 && wybor != 2 && wybor != 3 && wybor != 0 )
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("!! Wybierz poprawnie !!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                
 
-            Console.Read();
+            }
         }
 
         public static async void GetAPI(string data, string waluta)
@@ -115,11 +143,15 @@ namespace Zad2
             try
             {
                 Waluta wal = JsonConvert.DeserializeObject<Waluta>(response);
-                Console.WriteLine("                          USD/" + waluta + " kurs: " + wal.Rates[waluta] + " | Dzien: " + data);
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("\n USD/" + waluta + " kurs: " + wal.Rates[waluta] + " | Dzien: " + data);
+                Console.ForegroundColor = ConsoleColor.White;
             }
             catch(Exception e)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("!! Blad, Wpisz poprawne dane !!");
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
         
