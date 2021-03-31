@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace Zad2
 {
@@ -11,16 +12,16 @@ namespace Zad2
         public Dictionary<string, double> Rates { set; get; }
     }
 
-    public class Historia
+    public class Currency
     {
         public int ID { set; get; }
         public string waluta { set; get; }
-        public string kurs { set; get; }
+        public double kurs { set; get; }
         public string dzien { set; get; }
     }
 
-    public class IHistoria : Historia
+    public class ICurrency : DbContext
     {
-
+        public virtual DbSet<Currency> Waluta { get; set; }
     }
 }
