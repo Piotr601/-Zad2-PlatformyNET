@@ -3,11 +3,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Threading;
+using System.Data.Entity;
 
 namespace Zad2
 {
     class Program
     {
+
         public static void Start()
         {
             Console.WriteLine("\n #-------=================================-------#");
@@ -142,7 +144,7 @@ namespace Zad2
             
             try
             {
-                Waluta wal = JsonConvert.DeserializeObject<Waluta>(response);
+                API_Waluty wal = JsonConvert.DeserializeObject<API_Waluty>(response);
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("\n USD/" + waluta + " kurs: " + wal.Rates[waluta] + " | Dzien: " + data);
                 Console.ForegroundColor = ConsoleColor.White;
@@ -154,6 +156,7 @@ namespace Zad2
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
+
         
     }
 }
