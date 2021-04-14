@@ -11,6 +11,7 @@ namespace Zad2
 {
     class Program
     {
+  
 
         static ICurrency context = new ICurrency();
 
@@ -46,12 +47,9 @@ namespace Zad2
             Console.WriteLine(" #-------=================================-------#\n");
         }
 
-
-
         public static bool showAllDB()
         {         
             var waluty = (from s in context.Waluta select s).ToList<Currency>();
-            int i = 0;
             bool found = false;
             bool wypisalo = false;
             foreach(var st in waluty) //po kazdym
@@ -78,8 +76,6 @@ namespace Zad2
             }
             return wypisalo;
         }
-
-
 
         public static async void GetAPI(string _data, string _waluta)
         {
@@ -123,6 +119,9 @@ namespace Zad2
             {
                 string data = Today.ToString("yyyy-MM-dd");
                 Console.Write("\n >> Wybor: ");
+
+                Thread thread = new Thread(() => GetAPI(data, waluta));
+
                 try 
                 { 
                     wybor = int.Parse(Console.ReadLine()); 
@@ -275,8 +274,11 @@ namespace Zad2
 
                 if (wybor == 1 || wybor == 2 || wybor == 3)
                 {
-                    GetAPI(data, waluta);
-                    Thread.Sleep(1500);
+                    thread.Start();
+                    thread.Join();
+
+                    // GetAPI(data, waluta);
+                    // Thread.Sleep(1500);
                 }
 
             }
